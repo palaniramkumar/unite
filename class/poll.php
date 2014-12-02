@@ -3,7 +3,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-session_start();
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+} 
 
 function insertPoll($question, $choice, $priority, $ownerid, $ownername) {
     $sql = "INSERT INTO `SimplePoll`

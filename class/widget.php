@@ -5,7 +5,10 @@
  */
 
 require_once('dbConnection.php');
-session_start();
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+} 
 
 function homePagePost() {
     $sql = "select * from post where homepage=1 order by id desc limit 5;";

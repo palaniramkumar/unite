@@ -6,7 +6,7 @@ session_start();
   } */
 $status = "true";
 require_once('./class/dbConnection.php');
-if ($_POST["uname"] != NULL || $_POST["uname"] != "") {
+if (isset($_POST["uname"]) && ($_POST["uname"] != NULL || $_POST["uname"] != "")) {
     $con = new dbConnection();
     $status = $con->validateUser($_POST["uname"], $_POST["upass"]);
 }
@@ -15,10 +15,10 @@ require_once('./class/HealthCheck.php');
 require_once('./class/CommonMethod.php');
 require_once('./class/widget.php');
 require_once('./class/poll.php');
-if ($_SESSION["urole"] == "Pending")
+if (isset($_SESSION["urole"]) && $_SESSION["urole"] == "Pending")
     movePage("301", "./activity/newuserwizard.php");
 
-if ($_REQUEST["msg"] == "invaliduser") {
+if (isset($_REQUEST["msg"] ) && $_REQUEST["msg"] == "invaliduser") {
     $status = "false";
 }
 //echo "<script>alert('$_SESSION[urole]')</script>";

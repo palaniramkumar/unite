@@ -11,12 +11,15 @@
  * @author Mexico
  */
 
-    session_start();
+    if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
     authorizePage();
         
 function curPageURL() {
  $pageURL = 'http';
- if ($_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
+ if (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
  $pageURL .= "://";
  if ($_SERVER["SERVER_PORT"] != "80") {
   $pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
@@ -30,7 +33,7 @@ function authorizePage() {
     //$anonymous=array("Volvo","BMW","Toyota");
     //$admin=array("Volvo","BMW","Toyota");
     // echo curPageURL();
-    if (($_SESSION["urole"] == "Admin") || ($_SESSION["urole"] == "Alumni")) {
+    if (isset($_SESSION["urole"] ) && (($_SESSION["urole"] == "Admin") || ($_SESSION["urole"] == "Alumni"))) {
            
             if (isset($_SESSION['referer'])) {
                 $refurl=$_SESSION["referer"];
