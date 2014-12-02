@@ -1,0 +1,7 @@
+ErrorDocument 404 http://ssnunite.com/404.html
+ErrorDocument 500 http://ssnunite.com/500.html
+Options +FollowSymlinks
+#RewriteEngine on
+#RewriteCond %{REQUEST_URI} !/Unite/maintenance.html$ 
+#RewriteCond %{REMOTE_HOST} !^888\.888\.888\.888
+#RewriteRule $ /Unite/maintenance.html [R=302,L] 
