@@ -75,7 +75,7 @@ $headers .='Reply-To: '. $to . "\r\n" ;
 //echo $headers;
     $body = file_get_contents('../email_template/comment.html');
     $body = str_replace('%title%', $title, $body); 
-    $body = str_replace('%desc%', $msg, $body); 
+    $body = str_replace('%desc%', html_entity_decode($msg), $body); 
 
 if(mail($to,$title,$body,$headers)){
 echo "Check SPAM ! Please verify your email id by clicking the verfication link. This mail may be filtered as SPAM by your email provider";
